@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">CameraV</string>
+  <string name="app_name">Lexally</string>
   <string name="photo">照片</string>
   <string name="video">视频</string>
   <string name="menu_all_media">所有媒体</string>

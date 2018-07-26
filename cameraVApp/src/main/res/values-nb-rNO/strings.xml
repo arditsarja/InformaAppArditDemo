@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">CameraV</string>
+  <string name="app_name">Lexally</string>
   <string name="photo">Bilde</string>
   <string name="video">Video</string>
   <string name="menu_all_media">All media</string>
