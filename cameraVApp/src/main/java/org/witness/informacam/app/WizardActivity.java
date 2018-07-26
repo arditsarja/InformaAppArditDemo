@@ -7,7 +7,8 @@ import net.hockeyapp.android.CrashManager;
 import org.witness.informacam.InformaCam;
 import org.witness.informacam.app.screens.wizard.WizardCreateDB;
 import org.witness.informacam.app.screens.wizard.WizardSelectLanguage;
-import org.witness.informacam.app.screens.wizard.WizardTakePhoto;
+import org.witness.informacam.app.screens.wizard.
+        WizardTakePhoto;
 import org.witness.informacam.app.utils.Constants.App;
 import org.witness.informacam.app.utils.Constants.Codes;
 import org.witness.informacam.app.utils.Constants.WizardActivityListener;
@@ -63,7 +64,7 @@ public class WizardActivity extends FragmentActivity implements WizardActivityLi
 		//ft.addToBackStack(null);
 		ft.commit();
 		
-		checkForCrashes();
+//		checkForCrashes();
 		checkForUpdates();
 	}
 	

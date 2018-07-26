@@ -46,9 +46,9 @@
 
     </LinearLayout>
 
-    <!-- 
-    <Button        
-        android:id="@+id/login_commit"
+
+    <Button
+
         style="@style/BlueRoundedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,8 +56,9 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="15dp"
+        android:onClick="doLoginButton"
         android:text="@string/login_open" />
-         -->
+
     <ProgressBar
         android:id="@+id/login_waiter"
         android:layout_width="wrap_content"

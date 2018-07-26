@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import net.hockeyapp.android.CrashManager;
 
@@ -47,24 +51,24 @@ public class LoginActivity extends Activity {
         }
 
         password = (EditText) findViewById(R.id.login_password);
-//		password.setImeOptions(EditorInfo.IME_ACTION_DONE);
-//		password.setOnEditorActionListener(new OnEditorActionListener ()
-//		{
-//			@Override
-//			public boolean onEditorAction(TextView arg0, int actionId, KeyEvent event) {
-//				 if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-//			                actionId == EditorInfo.IME_ACTION_DONE ||
-//			                event.getAction() == KeyEvent.ACTION_DOWN &&
-//			                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-////					return true;
-//					// todo take care for login
-//				     doLogin ();
-//
-//						}
-//					   return true;
-//			}
-//
-//		});
+		password.setImeOptions(EditorInfo.IME_ACTION_DONE);
+		password.setOnEditorActionListener(new TextView.OnEditorActionListener()
+		{
+			@Override
+			public boolean onEditorAction(TextView arg0, int actionId, KeyEvent event) {
+				 if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+			                actionId == EditorInfo.IME_ACTION_DONE ||
+			                event.getAction() == KeyEvent.ACTION_DOWN &&
+			                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+//					return true;
+					// todo take care for login
+				     doLogin ();
+
+						}
+					   return true;
+			}
+
+		});
 
         password.setText("Elbasan94");
 
@@ -78,8 +82,8 @@ public class LoginActivity extends Activity {
 //		checkForCrashes();
 //		checkForUpdates();
 //		doLogin();
-        Intent i = new Intent(this, HomeActivity.class);
-        startActivity(i);
+//        Intent i = new Intent(this, HomeActivity.class);
+//        startActivity(i);
 
     }
 
@@ -88,20 +92,18 @@ public class LoginActivity extends Activity {
     }
 
     private void toggleStatus(boolean showButton) {
-        if (showButton) {
-            waiter.setVisibility(View.GONE);
-            //	commit.setVisibility(View.VISIBLE);
-        } else {
-            //commit.setVisibility(View.GONE);
-            waiter.setVisibility(View.VISIBLE);
-        }
+//        if (showButton) {
+//            waiter.setVisibility(View.GONE);
+//            //	commit.setVisibility(View.VISIBLE);
+//        } else {
+//            //commit.setVisibility(View.GONE);
+//            waiter.setVisibility(View.VISIBLE);
+//        }
     }
 
 
     public void doLogin() {
-        int a = 0;
-        if (a == 0)
-            return;
+
         InputMethodManager imm = (InputMethodManager) getSystemService(
                 Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(password.getWindowToken(), 0);
@@ -119,20 +121,20 @@ public class LoginActivity extends Activity {
                 public void run() {
                     char[] charPass = new char[password.length()];
                     password.getText().getChars(0, password.length(), charPass, 0);
-//					if(informaCam.attemptLogin(charPass)) {
-//						setResult(Activity.RESULT_OK);
-//						finish();
-//					} else {
-//						h.post(new Runnable() {
-//							@Override
-//							public void run() {
+					if(informaCam.attemptLogin(charPass)) {
+						setResult(Activity.RESULT_OK);
+						finish();
+					} else {
+						h.post(new Runnable() {
+							@Override
+							public void run() {
 //								password.setText("");
-//								toggleStatus(true);
-//								Toast.makeText(LoginActivity.this, getString(R.string.we_could_not_log), Toast.LENGTH_LONG).show();
-//							}
-//						});
-//
-//					}
+								toggleStatus(true);
+								Toast.makeText(LoginActivity.this, getString(R.string.we_could_not_log), Toast.LENGTH_LONG).show();
+							}
+						});
+
+					}
                 }
             }).start();
         }

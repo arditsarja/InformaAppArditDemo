@@ -95,19 +95,19 @@ public class InformaActivity extends Activity implements InformaCamStatusListene
 					Log.d(LOG, "NOW ASKING FOR CM STATUS...");
 
 					switch(informaCam.getCredentialManagerStatus()) {
-					case org.witness.informacam.utils.Constants.Codes.Status.UNLOCKED:
-						route = new Intent(this, HomeActivity.class);
+                        case org.witness.informacam.utils.Constants.Codes.Status.UNLOCKED:
+                            route = new Intent(this, HomeActivity.class);
 
-						if (prefStealthIcon)
-							route.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                            if (prefStealthIcon)
+                                route.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 
-						routeCode = Home.ROUTE_CODE;
-						break;
-					case org.witness.informacam.utils.Constants.Codes.Status.LOCKED:
-						route = new Intent(this, HomeActivity.class);
-						routeCode = Login.ROUTE_CODE;
-						break;
-					}
+                            routeCode = Home.ROUTE_CODE;
+                            break;
+                        case org.witness.informacam.utils.Constants.Codes.Status.LOCKED:
+                            route = new Intent(this, LoginActivity.class);
+                            routeCode = Login.ROUTE_CODE;
+                            break;
+                    }
 
 					routeByIntent();
 				}
@@ -217,7 +217,7 @@ public class InformaActivity extends Activity implements InformaCamStatusListene
 				break;
 			case Codes.Routes.LOGIN:
 
-				break;
+                break;
 			case Codes.Routes.HOME:
 				if (data != null && data.hasExtra(Codes.Extras.CHANGE_LOCALE))
 				{
@@ -314,18 +314,18 @@ public class InformaActivity extends Activity implements InformaCamStatusListene
 			route.putExtra(Codes.Extras.LOCALE_PREF_KEY, Preferences.Keys.LANGUAGE);
 			routeCode = Wizard.ROUTE_CODE;
 			break;
-		case org.witness.informacam.utils.Constants.Codes.Messages.Login.DO_LOGIN:
-			route = new Intent(this, HomeActivity.class);
-			routeCode = Login.ROUTE_CODE;
-			break;
-		case org.witness.informacam.utils.Constants.Codes.Messages.Home.INIT:
-			route = new Intent(this, HomeActivity.class);
-			if (prefStealthIcon)
-				route.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            case org.witness.informacam.utils.Constants.Codes.Messages.Login.DO_LOGIN:
+                route = new Intent(this, LoginActivity.class);
+                routeCode = Login.ROUTE_CODE;
+                break;
+            case org.witness.informacam.utils.Constants.Codes.Messages.Home.INIT:
+                route = new Intent(this, HomeActivity.class);
+                if (prefStealthIcon)
+                    route.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 
-			routeCode = Home.ROUTE_CODE;
-			break;
-		}
+                routeCode = Home.ROUTE_CODE;
+                break;
+        }
 
 		routeByIntent();
 	}
